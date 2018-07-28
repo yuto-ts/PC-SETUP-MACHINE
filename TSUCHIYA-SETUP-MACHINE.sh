@@ -52,6 +52,34 @@ sudo docker run hello-world
 
 ################################################################################
 
+# Add current user to 'docker' group to run Docker without sudo.
+# Logging out and back in is required for the group change to take effect.
+sudo usermod -a -G docker ${USER}
+
+################################################################################
+
+# Install Docker Compose.
+# https://docs.docker.com/compose/install/#install-compose
+# https://github.com/docker/compose/releases
+
+# Install Docker Compose from GitHub.
+sudo curl -L https://github.com/docker/compose/releases/download/1.20.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+# Test installation.
+sudo docker-compose version
+
+################################################################################
+
+# Setup the Bash shell environment with .bashrc.
+
+# Set default Docker runtime to use in docker-compose.yml.
+if ! grep -q "export DOCKER_RUNTIME" ~/.bashrc; then
+  echo "\n# Set default Docker runtime to use in docker-compose.yml." >> ~/.bashrc
+fi
+
+################################################################################
+
 # install applications 
 sudo apt-get install -y \
     terminator
