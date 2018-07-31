@@ -20,6 +20,7 @@ git submodule update
 wget https://release.gitkraken.com/linux/gitkraken-amd64.deb
 dpkg -i gitkraken-amd64.deb
 
+rm -rf ./gitkraken-amd64.deb
 ################################################################################
 
 # Install Docker CE.
