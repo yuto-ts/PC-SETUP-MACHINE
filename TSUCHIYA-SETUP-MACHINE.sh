@@ -86,4 +86,17 @@ sudo apt-get install -y \
     vlc \
     emacs-nox \
     gnome-tweaks \
+
+sudo apt install -y \
+    inkscape \
+    corebird \ # twitter cliant
+    evolution \ # mail and schduler
+    brasero \  # write tool CD/DVD 
+    rhythmbox-plugin-cdrecorder \ # copy music CD 
+    easytag \ # easy edit music tags 
+    clamtk \ # security software
+    gparted gpart \ # tool of manege partition 
+    
+
+
     
