@@ -16,6 +16,10 @@ sudo apt-get install -y git
 git submodule init
 git submodule update
 
+# install gitkraken.deb
+wget https://release.gitkraken.com/linux/gitkraken-amd64.deb
+dpkg -i gitkraken-amd64.deb
+
 ################################################################################
 
 # Install Docker CE.
@@ -80,7 +84,42 @@ fi
 
 ################################################################################
 
-# install applications 
+## install google chrome in command line 
+sudo gdeit /etc/apt/sources.list
+deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main # Press CTRL+S to save the file and Close it. Now Enter the Following command in Terminal and Press Enter
+wget https://dl.google.com/linux/linux_signing_key.pub
+sudo apt-key add linux_signing_key.pub
+# Now update the package list and install the stable version of Google Chrome.
+sudo apt updates
+sudo apt install google-chrome-stable
+
+## install virtual box in command line
+# First, we need to import the GPG keys of the Oracle VirtualBox repository to our system using the following commands:
+
+wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+# Both commands should output OK which means that the keys are successfully imported and packages from this repository will be considered trusted.
+
+# Next, add the VirtualBox repository with the add-apt-repository command as shown bellow:
+sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib"
+
+sudo apt update
+sudo apt virtualbox-5.2
+
+## install vscode in command line 
+url https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+
+sudo apt-get update
+sudo apt-get install code # or code-insiders
+
+## install steam in command line 
+sudo add-apt-repository multiverse
+sudo apt-get update
+sudo apt install steam
+
+## install applications 
 sudo apt-get install -y \
     terminator
     vlc \
@@ -96,7 +135,7 @@ sudo apt install -y \
     easytag \ # easy edit music tags 
     clamtk \ # security software
     gparted gpart \ # tool of manege partition 
-    
+
 
 
     
