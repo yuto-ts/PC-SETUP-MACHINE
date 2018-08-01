@@ -121,12 +121,14 @@ sudo apt-get update
 sudo apt install steam
 
 ## install applications 
+sudo apt-get update
 sudo apt-get install -y \
     terminator
     vlc \
     emacs-nox \
     gnome-tweaks \
 
+sudo apt update
 sudo apt install -y \
     inkscape \
     corebird \ # twitter cliant
