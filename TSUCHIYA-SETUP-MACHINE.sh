@@ -139,6 +139,9 @@ sudo apt install -y \
     clamtk \ # security software
     gparted gpart \ # tool of manege partition 
 
+# using format type exfat]
+sudo apt-get install exfat-fuse exfat-utils
+
 
 
     
