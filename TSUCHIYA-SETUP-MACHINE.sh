@@ -138,6 +138,7 @@ sudo apt install -y \
     easytag \ # easy edit music tags 
     clamtk \ # security software
     gparted gpart \ # tool of manege partition 
+    install wine64 \ # wine
 
 # using format type exfat]
 sudo apt-get install exfat-fuse exfat-utils
