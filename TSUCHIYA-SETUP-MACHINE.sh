@@ -143,6 +143,22 @@ sudo apt install -y \
 # using format type exfat]
 sudo apt-get install exfat-fuse exfat-utils
 
+##################################################################################
+
+# install fish
+sudo apt-add-repository ppa:fish-shell/release-3
+sudo apt-get -y update
+sudo apt-get -y install fish
+
+# install fisher and custimeze terminal
+curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
+fisher add oh-my-fish/theme-bobthefish             # install fonts
+git clone https://github.com/powerline/fonts.git
+
+fisher add 0rax/fish-bd
+
+##################################################################################
+
 
 
     
