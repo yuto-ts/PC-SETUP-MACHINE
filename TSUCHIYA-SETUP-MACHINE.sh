@@ -7,8 +7,9 @@ if ! sudo grep -q "Defaults.*env_reset.*timestamp_timeout=.*" /etc/sudoers; then
   sudo sed -i "s/\(Defaults.*env_reset\)/\1,timestamp_timeout=-1/g" /etc/sudoers
 fi
 
-################################################################################
-# git 
+############################### Install git. ###############################
+
+# Install git #
 sudo apt-get install -y git
 
 # Initialize and download Git submodules.
@@ -16,18 +17,12 @@ sudo apt-get install -y git
 git submodule init
 git submodule update
 
-# install gitkraken.deb
-wget https://release.gitkraken.com/linux/gitkraken-amd64.deb
-dpkg -i gitkraken-amd64.deb
+############################### Install Docker CE. ###############################
 
-rm -rf ./gitkraken-amd64.deb
-################################################################################
-
-# Install Docker CE.
-# https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/
+# refer to https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/
 
 # Remove older versions of Docker ('docker', 'docker-engine') if any.
-sudo apt-get remove docker docker-engine docker.io
+sudo apt-get remove docker docker-engine docker.io containerd runc
 
 # Install required packages.
 sudo apt-get update
@@ -35,6 +30,7 @@ sudo apt-get install -y \
   apt-transport-https \
   ca-certificates \
   curl \
+  gnupg-agent \
   software-properties-common
 
 # Add official Docker GPG key and display it.
@@ -49,7 +45,13 @@ sudo apt-get update
 
 # Install the latest version of Docker CE.
 # Any existing installation will be replaced.
-sudo apt-get install -y docker-ce
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+
+# Add current user to 'docker' group to run Docker without sudo.
+# Logging out and back in is required for the group change to take effect.
+sudo usermod -aG docker $USER
+sudo mkdir /sys/fs/cgroup/systemd
+sudo mount -t cgroup -o none,name=systemd cgroup /sys/fs/cgroup/systemd
 
 # Test installation.
 sudo docker version
@@ -57,18 +59,12 @@ sudo docker run hello-world
 
 ################################################################################
 
-# Add current user to 'docker' group to run Docker without sudo.
-# Logging out and back in is required for the group change to take effect.
-sudo usermod -a -G docker ${USER}
-
-################################################################################
-
 # Install Docker Compose.
-# https://docs.docker.com/compose/install/#install-compose
+# https://docs.docker.com/compose/install/s
 # https://github.com/docker/compose/releases
 
 # Install Docker Compose from GitHub.
-sudo curl -L https://github.com/docker/compose/releases/download/1.20.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
 # Test installation.
