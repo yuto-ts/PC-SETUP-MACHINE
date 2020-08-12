@@ -1,0 +1,5 @@
+# pip install requirement list
+# pip install -r [requirements.txtのパス]
+numpy
+matplotlib
+scipy
