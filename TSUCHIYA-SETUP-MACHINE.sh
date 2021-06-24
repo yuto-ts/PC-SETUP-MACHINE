@@ -245,3 +245,8 @@ source ~/.bashrc
 # Simple CUDA Containers
 # docker run --gpus all nvcr.io/nvidia/k8s/cuda-sample:nbody nbody -gpu -benchmark
 # docker run -it --gpus all -p 8888:8888 tensorflow/tensorflow:latest-gpu-py3-jupyter
+
+##################################################################################
+
+# install ffmpeg
+sudo apt install ffmpeg
